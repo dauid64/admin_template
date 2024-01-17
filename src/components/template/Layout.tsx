@@ -1,6 +1,7 @@
 import SideMenu from "./SideMenu"
 import Header from "./Header"
 import Content from "./Content"
+import useAppData from "@/src/data/hook/useAppData"
 
 interface LayoutProps {
     title: string
@@ -9,8 +10,10 @@ interface LayoutProps {
 }
 
 export default function Layout(props: LayoutProps) {
+    const ctx = useAppData()
+
     return(
-        <div className="dark flex h-screen w-screen">
+        <div className={`${ctx.tema} flex h-screen w-screen`}>
             <SideMenu/>
             <div className="flex flex-col w-full p-7 bg-gray-300 dark:bg-gray-800">
                 <Header title={props.title} subtitle={props.subtitle}/>
