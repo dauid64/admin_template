@@ -4,7 +4,7 @@ import { WarningIcon } from "../components/icons";
 import useAuth from "../data/hook/useAuth";
 
 export default function Autenticacao() {
-    const {usuario, loginGoogle} = useAuth()
+    const { cadastrar, login, loginGoogle} = useAuth()
     const [erro, setErro] = useState(null)
     const [modo, setModo] = useState<'login' | 'cadastro'>('login')
     const [email, setEmail] = useState('')
@@ -12,16 +12,18 @@ export default function Autenticacao() {
 
     function showErro(msg: string, timeSeconds = 5) {
         setErro(msg)
-        setTimeout(() => setErro(null), timeSeconds * 1000)
+        setTimeout(() => setErro(null), timeSeconds * 5000)
     }
 
-    function submit() {
-        if(modo === 'login') {
-            console.log('login')
-            showErro('Ocorreu um erro no login!')
-        } else {
-            console.log('cadastrar')
-            showErro('Ocorreu um erro no cadastro!')
+    async function submit() {
+        try {
+            if(modo === 'login') {
+                await login(email, senha)
+            } else {
+                await cadastrar(email, senha)
+            }
+        } catch(e) {
+            showErro(e?.message ?? 'Erro desconhecido!')
         }
     }
     return (
