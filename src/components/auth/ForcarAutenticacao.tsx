@@ -14,9 +14,9 @@ export default function ForcarAutenticacao(props) {
                     <script
                     dangerouslySetInnerHTML={{
                         __html: `
-                            if(!document.cookie?.includes("admin-template-auth) {
+                            if(!document.cookie?.includes("admin-template-auth")) {
                                 window.locaiont.href = "/autenticacao"
-                            })
+                            }
                         `
                     }}>
                     </script>
