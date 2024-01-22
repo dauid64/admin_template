@@ -34,7 +34,7 @@ npm i
 npm run dev
 ```
 
-## ☕ Usando Quiz
+## ☕ Usando Admin Template
 
 * Login e cadastro via firebase
 
